@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous" />
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js" integrity="sha384-B4gt1jrGC7Jh4AgTPSdUtOBvfO8shuf57BaghqFfPlYxofvL8/KUEfYiJOMMV+rV" crossorigin="anonymous"></script>
+<style>
+    @import url("https://fonts.googleapis.com/css2?family=Bree+Serif&family=Caveat:wght@400;700&family=Lobster&family=Monoton&family=Open+Sans:ital,wght@0,400;0,700;1,400;1,700&family=Playfair+Display+SC:ital,wght@0,400;0,700;1,700&family=Playfair+Display:ital,wght@0,400;0,700;1,700&family=Roboto:ital,wght@0,400;0,700;1,400;1,700&family=Source+Sans+Pro:ital,wght@0,400;0,700;1,700&family=Work+Sans:ital,wght@0,400;0,700;1,700&display=swap");
+
+    .bg {
+    background-image: url("https://assets.ccbp.in/frontend/dynamic-webapps/time-converter-bg.png");
+    height: 100vh;
+    width: 100vw;
+    background-size: cover;
+    text-align: left;
+    padding: 65px;
+}
+
+.header {
+    color: white;
+    font-size: 65px;
+}
+
+.paragraph {
+    color: white;
+    font-weight: bold;
+    font-size: 32px;
+}
+
+.inputElement {
+    font-size: 20px;
+    padding: 8px;
+    width: 50%;
+    border-radius: 7px;
+    border-color: orange;
+}
+
+.btn1 {
+    height: 45px;
+    border-radius: 7px;
+    margin-top: 17px;
+    width: 225px;
+    font-size: 20px;
+
+}
+
+.para2 {
+    color: white;
+    padding-top: 20px;
+}
+
+.contain {
+    border-style: solid;
+    text-align: center;
+    border-width: 2px;
+    border-color: white;
+    color: white;
+    font-weight: bold;
+    background-color: transparent;
+    margin: 20px;
+    border-radius: 20px;
+    padding: 40px;
+    font-size: 29px;
+}
+</style>
+</head>
+<body>
+<script>
+   let bg = document.createElement("div");
+bg.classList.add("bg", "d-flex", "flex-column");
+document.body.appendChild(bg);
+let header = document.createElement("h1");
+header.textContent = "Time Converter";
+header.classList.add("header");
+bg.appendChild(header);
+let paragraph = document.createElement("paragraph");
+paragraph.textContent = "Enter hours and minutes values to convert into seconds";
+paragraph.classList.add("paragraph");
+bg.appendChild(paragraph);
+let label1 = document.createElement("label");
+label1.textContent = "Hours *";
+label1.id = "label1";
+label1.setAttribute("for", "hoursInput");
+label1.style.marginTop = "20px";
+label1.classList.add("paragraph");
+bg.appendChild(label1);
+let input1 = document.createElement("input");
+input1.type = "text";
+input1.classList.add("inputElement");
+input1.id = "hoursInput";
+bg.appendChild(input1);
+
+let label2 = document.createElement("label");
+label2.textContent = "Minutes *";
+label2.id = "label2";
+label2.setAttribute("for", "minutesInput");
+label2.style.marginTop = "20px";
+label2.classList.add("paragraph");
+bg.appendChild(label2);
+let input2 = document.createElement("input");
+input2.type = "text";
+input2.classList.add("inputElement");
+input2.id = "minutesInput";
+bg.appendChild(input2);
+
+let button = document.createElement("button");
+button.textContent = "Convert to Seconds";
+button.classList.add("btn1");
+button.id = "convertBtn";
+bg.appendChild(button);
+let para2 = document.createElement("paragraph");
+para2.classList.add("para2");
+para2.id = "errorMsg";
+bg.appendChild(para2);
+
+let container = document.createElement("div");
+container.classList.add("contain", "d-none");
+let remainings = document.createElement("paragraph");
+remainings.id = "timeInSeconds";
+container.appendChild(remainings);
+bg.appendChild(container);
+
+button.addEventListener("click", function(event) {
+    let value1 = parseInt(input1.value);
+    let value2 = parseInt(input2.value);
+    if (input1.value === "" || isNaN(input1.value)) {
+        para2.textContent = "Please enter a valid number in hours";
+        container.classList.add("d-none");
+    } else if (input2.value === "" || isNaN(input2.value)) {
+        para2.textContent = "Please enter a valid number in minutes";
+        container.classList.add("d-none");
+    } else {
+        let result = (((value1 * 60) * 60) + (value2 * 60));
+        para2.textContent = "";
+        remainings.textContent = result + "S";
+        container.classList.remove("d-none");
+
+    }
+})
+</script>
+
+    
+</body>
+
+</html>
